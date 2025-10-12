@@ -81,7 +81,13 @@
 }
 
 .name-dish {
-    text-wrap: nowrap;
+    text-wrap: wrap;
+    text-align: center;
+}
+
+.price-dish {
+    text-align: center;
+    margin-bottom: 0.5rem;
 }
 
 .dish > h3::after {
@@ -152,7 +158,7 @@
 
 body, html {
     width: 100vw;
-    overflow-x: auto;
+    overflow-x: hidden;
 }
 
 header {
@@ -262,8 +268,9 @@ main > section > h2 {
 
 .image-dish {
     border-radius: 35px;
-    width: 100%;
-    height: 258px;
+    width: 90%;
+    aspect-ratio: 1.5 / 1;
+    align-self: center;
 }
 
 .price-dish {
@@ -279,7 +286,7 @@ main > section > h2 {
 }
 
 .weight-dish {
-    margin-top: 0.5rem;
+    margin: 0.25rem;
     color: grey;
 }
 
@@ -288,6 +295,10 @@ main > section > h2 {
     padding: 10px 30px;
     border-radius: 10px;
     border: 1px solid transparent;
+    width: 70%;
+    aspect-ratio: 7 / 1;
+    font-size: 1.2rem;
+    align-self: center;
     cursor: pointer;
 }
 
@@ -607,8 +618,10 @@ h2 {
 @media(max-width: 400px) {
     body, html {
     width: 100vw;
-    overflow-x: visible !important;
-    
+    overflow-x: hidden;
+    }
+    .take-order-part {
+        border-bottom: 3px solid black;;
     }
     header {
     flex-direction: column;
@@ -622,7 +635,7 @@ h2 {
     	margin-bottom: 0.3rem;	
 	}
     main {
-    margin: 0;
+        margin: 0px !important;
     }
     .dish-element {
     padding: 15px 20px;
@@ -632,6 +645,12 @@ h2 {
     .button-container {
      flex-direction: column;
       margin: 0 0.5rem;
+    }
+    .container-filters {
+        margin: 0px;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        justify-content: center;
     }
 
   
