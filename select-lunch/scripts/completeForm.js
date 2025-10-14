@@ -29,7 +29,9 @@ function callbackReset(event) {
     }
     cart.clear();
     showHideAllCartElements('hide');
-    formTag.reset();
+    
+    const inputTags = document.querySelectorAll('input, textarea');
+    inputTags.forEach( (tag) => tag.value = '');
 }
 
 function callbackSubmit(event) {
