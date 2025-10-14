@@ -6,6 +6,9 @@ export const selectSoupElement = document.getElementById('choose-soup-id');
 export const selectMainDishElement = document.getElementById('choose-main-dish-id');
 export const selectDrinkElement = document.getElementById('choose-drink-id');
 
+export const formTag = document.querySelector('form');
+
+
 
 certainTimeDeliveryRadioBtn.addEventListener("change", (e) => certainTimeInput.classList = ['show']);
 fasterTimeDelivery.addEventListener('change', (e) => certainTimeInput.classList = ['hide']);

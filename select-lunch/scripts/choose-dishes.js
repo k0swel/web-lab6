@@ -1,8 +1,7 @@
 import { allDishes } from './dishes.js';
-import { putDishToOption } from './completeForm.js';
+import { setSelectedDishInSelectTag } from './completeForm.js';
 
-let cart = new Set();
-let clientsCartTag = document.getElementsByClassName('clients-cart')[0];
+export let cart = new Set();
 let dishTags = {
     'soups': document.getElementById('dishSoup'),
     'main-dish': document.getElementById('dishMainDish'),
@@ -61,7 +60,6 @@ function callbackOnClick(event) {
             }
         }
     }
-    putDishToOption(currentDish);
     cart.add(purpose);
     addElementsToPageAndCalculateTotalPay(purpose);
 }
