@@ -1,5 +1,4 @@
 import { allDishes } from './dishes.js';
-import { setSelectedDishInSelectTag } from './completeForm.js';
 
 export let cart = new Set();
 let dishTags = {
@@ -64,11 +63,8 @@ function callbackOnClick(event) {
     addElementsToPageAndCalculateTotalPay(purpose);
 }
 
-function clearCart() {
-    cart.clear();
-}
 
-function showHideAllCartElements(action) {
+export function showHideAllCartElements(action) {
     switch (action) {
         case 'show':
             Object.values(dishTags).forEach(tag => {
@@ -81,11 +77,14 @@ function showHideAllCartElements(action) {
         case 'hide':
             Object.values(dishTags).forEach(tag => {
                 if (tag && tag.parentElement) {
+                    tag.innerText = "Не выбрано";
                     tag.parentElement.classList.remove('show');
                     tag.parentElement.classList.add('hide');
                 }
             });
             paragraphtotalPayTag.parentNode.classList = ['hide'];
+            const paragraphNothingChoose = document.querySelector('#paragraph-nothing-choice');
+            paragraphNothingChoose.classList = ['show'];
             break;
     }
 }
@@ -111,19 +110,11 @@ function addElementsToPageAndCalculateTotalPay(element) {
     paragraphtotalPayTag.innerHTML = `Общая стоимость = ${totalSum} руб.`;
 }
 
-function deleteElementsFromPage() {
-    for (const el in dishTags) {
-        dishTags[el].innerText = 'Блюдо не выбрано';
-    }
-}
-
 function registerEventsOnButtons() {
     const btnsAddToCart = document.getElementsByClassName('btn-add-to-buy-list');
     for (const btn of btnsAddToCart) {
         btn.addEventListener('click', callbackOnClick);
     }
-    btnReset.addEventListener('click', (e) => {clearCart(); deleteElementsFromPage(); showHideAllCartElements('hide')});
-    btnSubmit.addEventListener('click', (e) => {console.log('нажата кнопка btnSubmit');});
 
 }
 

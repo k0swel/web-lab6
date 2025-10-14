@@ -2,6 +2,7 @@ import { allDishes } from "./dishes.js";
 import { notificationObject, showNotification } from "./notification.js";
 import { formTag } from "./forms.js";
 import { cart } from "./choose-dishes.js";
+import {showHideAllCartElements} from './choose-dishes.js';
 
 // создание контейнера с select блюд
 function createInputDishContainer(dishes) {
@@ -13,7 +14,6 @@ function createInputDishContainer(dishes) {
             dishTypes[dish.category] = document.createElement('select');
             dishTypes[dish.category].name = dish.category;
             dishTypes[dish.category].id = dish.category;
-            // dishTypes[dish.category].required = true;
             inputDishContainer.appendChild(dishTypes[dish.category]);
 
         }
@@ -21,19 +21,21 @@ function createInputDishContainer(dishes) {
     return inputDishContainer;
 }
 
-// дописать
+
 function callbackReset(event) {
     event.preventDefault();
-    const formData = new FormData(formTag);
-    console.dir(formData);
+    for (const dish of cart) {
+        removeDishFromSelectTag(dish); // удаляем блюдо из тега <form>.
+    }
+    cart.clear();
+    showHideAllCartElements('hide');
+    formTag.reset();
 }
-
 
 function callbackSubmit(event) {
     event.preventDefault();
     const formData = new FormData(formTag);
 
-    console.log(cart);
     for (const dish of cart) {
         formData.append(dish.category, dish.keyword);
         setSelectedDishInSelectTag(dish)
@@ -70,9 +72,17 @@ function callbackSubmit(event) {
 
 export function setSelectedDishInSelectTag(dishObject, formTag=document.querySelector('form')) {
     const selectTag = formTag.querySelector(`select[name=${dishObject.category}]`);
-    console.log(dishObject);
     selectTag.appendChild(new Option('', dishObject.keyword, false, true));
+}
 
+function removeDishFromSelectTag(dishObject, formTag=document.querySelector('form')) {
+    const optionTag = formTag.querySelector(`option[value="${dishObject.keyword}"]`);
+    try {
+    optionTag.remove();
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
 
 function main() {
