@@ -15,4 +15,4 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
-          script: cd /var/www/web-lab/lab6 && git pull
+          script: ssh-eval "$(ssh-agent -s) $$ ssh-add ~/.ssh/github && cd /var/www/web-lab/lab6 && git pull
