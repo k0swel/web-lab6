@@ -4,8 +4,8 @@ on:
     branches:
       - main
 jobs:
-  build:
-    name: Build
+  connect-to-server-and-deploy-web-site:
+    name: Connect to the server over SSH
     runs-on: ubuntu-latest
     steps:
       - name: Execute remote SSH commands using password
@@ -15,4 +15,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
-          script: eval "$(ssh-agent -s)" && ssh-add ~/.ssh/github && cd /var/www/web-lab/lab6 && git pull 
+          script: > 
+            eval "$(ssh-agent -s)" && ssh-add ~/.ssh/github
+            && cd /var/www/web-lab/lab6 && git pull 
