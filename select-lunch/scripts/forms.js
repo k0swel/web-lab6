@@ -10,5 +10,6 @@ export const formTag = document.querySelector('form');
 
 
 
-certainTimeDeliveryRadioBtn.addEventListener("change", (e) => certainTimeInput.classList = ['show']);
+certainTimeDeliveryRadioBtn.addEventListener("change", (e) => {certainTimeInput.classList = ['show']; });
+certainTimeDeliveryRadioBtn.required = true;
 fasterTimeDelivery.addEventListener('change', (e) => certainTimeInput.classList = ['hide']);
